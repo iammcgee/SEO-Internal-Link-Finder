@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Query Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        select, input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #output {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>SEO Internal Link Query Generator</h2>
+    <label for="brand">Select Brand:</label>
+    <select id="brand">
+        <option value="aiconics.com">Aiconics</option>
+        <option value="fairviewmicrowave.com">Fairview Microwave</option>
+        <option value="inc-installs.com">INC Installs</option>
+        <option value="integraoptics.com">Integra Optics</option>
+        <option value="l-com.com">L-com</option>
+        <option value="milestek.com">MilesTek</option>
+        <option value="navepoint.com">NavePoint</option>
+        <option value="pasternack.com">Pasternack</option>
+        <option value="polyphaser.com">PolyPhaser</option>
+        <option value="showmecables.com">Show Me Cables</option>
+        <option value="transtector.com">Transtector</option>
+    </select>
+    <br>
+    <label for="keyword">Enter Keyword:</label>
+    <input type="text" id="keyword" placeholder="Enter keyword">
+    <br>
+    <button onclick="generateQuery()">Generate Query</button>
+    <button onclick="copyToClipboard()">Copy</button>
+    <br>
+    <p id="output"></p>
+    
+    <script>
+        function generateQuery() {
+            let brand = document.getElementById("brand").value;
+            let keyword = document.getElementById("keyword").value.trim();
+            if (keyword === "") {
+                alert("Please enter a keyword.");
+                return;
+            }
+            let query = `site:${brand} intext:\"${keyword}\" inurl:\"${keyword}\" intitle:\"${keyword}\"`;
+            document.getElementById("output").innerText = query;
+        }
+        
+        function copyToClipboard() {
+            let queryText = document.getElementById("output").innerText;
+            if (queryText === "") {
+                alert("Generate a query first!");
+                return;
+            }
+            navigator.clipboard.writeText(queryText);
+            alert("Query copied to clipboard!");
+        }
+    </script>
+</body>
+</html>
